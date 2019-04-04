@@ -1,0 +1,27 @@
+<%- include('includes/header.ejs') %>
+
+<div class="w3-container style="max-width:1400px">
+
+<!-- Body header -->
+  <header class="w3-container w3-center w3-padding-32 w3-teal" "> 
+    <h1><b>MY MOVIE REVIEW BLOG</b></h1>
+    <p>Welcome to the blog of <span class="w3-tag w3-orange w3-round">R. Tomatoes</span></p>
+  </header>
+
+<!-- Body main -->
+  <main class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top30px">
+    <% for (i = 0; i < Math.ceil(blogs.length/4); i++) { %>
+      <div class="w3-row-padding w3-padding-16 w3-center">
+        <% for (j = 1 + i*4, count = 0; (j < blogs.length + 1 && count < 4); j++, count++) { %>
+          <div class="w3-quarter w3-border">
+            <img src="<%= blogs[j-1].imageUrls[1] %>" alt="movie poster" style="width:100%; height:250px; object-fit:cover">
+              <p class="w3-center w3-blue" style="padding:5px"><%= blogs[j-1].title %></p>
+              <p class="w3-center"><%= blogs[j-1].getCreatedOnFormatted() %></p>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+  </main>
+
+<!-- Body footer -->
+<%- include('includes/footer.ejs') %>

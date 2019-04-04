@@ -68,4 +68,3 @@ initzer.initFile(initzer.PKG_FILE, initzer.OLD_PROJECT_NAME, projectName);
 log.debug(initzer.LOGGEE, `${initzer.OLD_PROJECT_NAME} in ${initzer.PKG_FILE} has been replaced to ${projectName}`);
 initzer.initFile(initzer.TEST_FILE, initzer.OLD_PROJECT_NAME, projectName);
 log.debug(initzer.LOGGEE, `${initzer.OLD_PROJECT_NAME} in ${initzer.TEST_FILE} has been replaced to ${projectName}`);
-

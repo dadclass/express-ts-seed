@@ -1,0 +1,19 @@
+{
+  "TableName": "blogTable",
+  "KeySchema": [
+    {
+      "AttributeName": "blogId",
+      "KeyType": "HASH"
+    }
+  ],
+  "AttributeDefinitions": [
+    {
+      "AttributeName": "blogId",
+      "AttributeType": "S"
+    }
+  ],
+  "ProvisionedThroughput": {
+    "ReadCapacityUnits": 5,
+    "WriteCapacityUnits": 5
+  }
+}

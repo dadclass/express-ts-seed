@@ -1,12 +1,20 @@
-import App from './app';
-import BlogController from './controllers/blog.controller';
+import path from 'path';
+import log from './logger/log-wrapper';
 
-const PORT_NO: number = 3000;
-const app = new App(
+import { BlogApp } from './blog-app';
+import { BlogRoute } from './routes/blog.route';
+
+const LOGGEE: string = path.basename(__filename);
+const PORT_NO: string = process.env.EXPRESS_PORT || "3000";
+
+log.debug(LOGGEE, 'Server is starting')
+log.debug(LOGGEE, `Creating Blog App`);
+const blogApp = new BlogApp(
     [
-        new BlogController(),
-    ],
-    PORT_NO,
+        new BlogRoute("/blogs")
+       //TODO: construct app with defined route(s), add more routes here if necessary
+    ]
 );
  
-app.listen();
+blogApp.listen(PORT_NO);
+log.debug(LOGGEE, `Server started`);

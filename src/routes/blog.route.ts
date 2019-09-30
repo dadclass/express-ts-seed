@@ -20,6 +20,8 @@ export class BlogRoute implements Route {
         log.debug(this.LOGGEE, `Defined GET / path to retrieve all the blogs`);
         this.router.post("/", this.blogCtlr.createABlog);
         log.debug(this.LOGGEE, `Defined POST / path to create a new blog`);
+        this.router.get("/:blogId", this.blogCtlr.getBlog);
+        log.debug(this.LOGGEE, `Defined GET /:prodId path to retrieve a blog`);
     }
 
     getRootPath(): string {

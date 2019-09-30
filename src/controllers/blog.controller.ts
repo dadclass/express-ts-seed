@@ -17,12 +17,45 @@ export class BlogController {
         log.debug(this.LOGGEE, `GET-ting all blogs ...`)
         if (req.header('Content-Type') === 'application/json') {
             log.debug(this.LOGGEE, 'Responding in JSON');
-            res.json(Blog.readAllBlogs());
+            res.json(Blog.getAllBlogs());
         } else {  // return webpage for non JSON requests
             log.debug(this.LOGGEE, 'Responding in webpage');
             res.render("bloglist", {
                 pageTitle: this.GET_ALL_BLOGS_PAGE_TITLE,
-                blogs: Blog.readAllBlogs()});
+                canCreate: true,
+                canEdit: false,
+                canDelete: false,
+                blogs: Blog.getAllBlogs()});
+        }
+    }
+
+    getBlog = (req: express.Request, res: express.Response) => {
+        const blogId:string = req.params.blogId;
+        log.debug(this.LOGGEE, `GET-ting blog ${blogId} ...`);
+        const blog: any = Blog.getBlog(blogId);  // blog can be undefined if its ID not found
+        if (blog === undefined && req.header('Content-Type') === 'application/json') {
+            log.debug(this.LOGGEE, 'Responding in JSON');
+            log.error(this.LOGGEE, `Blog ID ${blogId} doesn't exist`);
+            res.json({Error: `Blog ID ${blogId} doesn't exist`});
+            return;
+        }
+        if (blog === undefined && req.header('Content-Type') !== 'application/json') {
+            log.debug(this.LOGGEE, 'Responding in HTML');
+            log.error(this.LOGGEE, `Blog ID ${blogId} doesn't exist, redirecting to /`);
+            res.redirect('/');
+            return;
+        }
+        if (req.header('Content-Type') === 'application/json') {
+            log.debug(this.LOGGEE, 'Responding in JSON');
+            res.json(blog);
+        } else {  // return webpage for non JSON requests
+            log.debug(this.LOGGEE, 'Responding in HTML');
+            res.render("blogdetail", {
+                pageTitle: blog.title,
+                canCreate: false,
+                canEdit: true,
+                canDelete: true,
+                blog: blog});
         }
     }
 

@@ -9,6 +9,7 @@ import { Blog } from './domains/blog.model';
 export class BlogApp {
     private app: express.Application;
     private readonly LOGGEE: string = path.basename(__filename);
+    private readonly DATA_FILE_PATH: string = path.join(__dirname, 'domains/blogs.data.ts');
 
     constructor(routes: BlogRoute[]) {
         this.app = express();
@@ -19,7 +20,7 @@ export class BlogApp {
         this.initMiddlewares();
         this.initRoutes(routes);
 
-        Blog.loadSampleData();
+        Blog.loadSampleData(this.DATA_FILE_PATH);
     }
  
     private initMiddlewares() {

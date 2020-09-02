@@ -8,6 +8,7 @@
     "startdb": "java -Djava.library.path=F:\\dynamodb\\DynamoDBLocal_lib -jar F:\\dynamodb\\DynamoDBLocal.jar -sharedDb",
     "createtable": "aws dynamodb create-table --cli-input-json file://./db/tables/create_blog_table.json --endpoint-url http://localhost:8000",
     "deletetable": "aws dynamodb delete-table --table-name blogTable",
+    "preinstall": "npx npm-force-resolutions",
     "start": "npm run build:live",
     "build": "tsc -p .",
     "build:live": "nodemon --watch src/**/*.ts --exec ts-node src/server.ts",
@@ -26,6 +27,9 @@
     "url": "https://github.com/dadclass/express-ts-seed.git/issues"
   },
   "homepage": "https://github.com/dadclass/express-ts-seed.git#readme",
+  "resolutions": {
+    "minimist": "^1.2.5"
+  },
   "devDependencies": {
     "@types/chai": "^4.2.12",
     "@types/express": "^4.17.8",
@@ -33,6 +37,7 @@
     "@types/node": "^10.17.28",
     "@types/winston": "^2.4.4",
     "chai": "^4.2.0",
+    "minimist": "^1.2.5",
     "mocha": "^5.2.0",
     "nodemon": "^1.19.4",
     "prettier": "^1.19.1",

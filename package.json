@@ -37,7 +37,7 @@
     "@types/node": "^10.17.28",
     "@types/winston": "^2.4.4",
     "chai": "^4.2.0",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "mocha": "^5.2.0",
     "nodemon": "^1.19.4",
     "prettier": "^1.19.1",
